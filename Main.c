@@ -11,7 +11,6 @@
 
 #include <DAVE3.h>			//Declarations from DAVE3 Code Generation (includes SFR declaration)
 #include "display_5110.h"
-//#include "fonts.h"
 #include "delay.h"
 #include "state_machine.h"
 
