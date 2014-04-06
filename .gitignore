@@ -30,6 +30,30 @@ local.properties
 
 
 #################
+## Git
+#################
+*.gitattributes
+*.gitignore
+
+
+#################
+## Keil
+#################
+*.htm
+*.map
+*.uvopt
+*.uvproj
+*.dep
+*.axf
+*.lnp
+*.crf
+*.d
+*.o
+*.crf
+*.lst
+
+
+#################
 ## Visual Studio
 #################
 
