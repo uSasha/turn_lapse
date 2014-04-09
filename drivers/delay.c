@@ -18,11 +18,21 @@ void timer_tick(void* Temp)
 }
 
 
-void delayms(uint32_t delay)
+void delay_ms(uint32_t delay)
 {
 	ticks = 0;
 	SYSTM001_StartTimer(delay_TimerId);
 	while( ticks < delay );
 	SYSTM001_StopTimer(delay_TimerId);
 	ticks = 0;
+}
+
+
+void delay_us(uint32_t delay)
+{
+	for(uint32_t j = 0; j < delay; j++)
+	{
+		for(uint32_t i = 0; i <= 100; i++)
+		{}
+	}
 }

@@ -17,17 +17,17 @@ void display_init(void)
 
 	SPI001_WriteData(&SPI001_Handle0,&SendData,SPI001_STANDARD);
 
-	delayms(2);
+	delay_ms(2);
 	IO004_SetPin(IO004_Handle1);	// RST high
-	delayms(10);					// 10 ms
+	delay_ms(10);					// 10 ms
 	IO004_ResetPin(IO004_Handle1);	// RST low
-	delayms(100);					// 100 ms
+	delay_ms(100);					// 100 ms
 	IO004_SetPin(IO004_Handle1);	// RST high
-	delayms(10);
+	delay_ms(10);
 
 	IO004_ResetPin(IO004_Handle0);	// send command
 
-	delayms(1);						// TODO redo
+	delay_ms(1);						// TODO redo
 	SendData = 0x21;	// horizontal addressing, extended instruction set
 	SPI001_WriteData(&SPI001_Handle0,&SendData,SPI001_STANDARD);
 	SendData = 0xB1;	// ??
@@ -64,7 +64,7 @@ void gotoXY(int x, int y)
 //Clears the LCD by writing zeros to the entire screen
 void LCDClear(void)
 {
-	delayms(1);		// TODO find why this is necessary for proper data transfer
+	delay_ms(1);		// TODO find why this is necessary for proper data transfer
 //	gotoXY(0, 0);
 //	for (int index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
 	for (int index = 0 ; index <= (LCD_X * LCD_Y / 8) ; index++)

@@ -9,7 +9,8 @@
 #define DELAY_H_
 
 
-void delayms(uint32_t delay);
+void delay_ms(uint32_t delay);
+void delay_us(uint32_t delay);
 void timer_tick(void* Temp);
 
 

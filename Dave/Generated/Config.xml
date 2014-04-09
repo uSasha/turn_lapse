@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Project MotherSystem_Version="" Name="test" Path="C:\coding\infineon\test">
+<Project MotherSystem_Version="" Name="turn_lapse" Path="C:\coding\infineon\turn_lapse">
     <COMPILER>
         <Name>ARM-GCC</Name>
         <Version/>
@@ -153,9 +153,9 @@
         <Assembly_Files/>
     </Generated_Files>
     <Include_Path>
+        <Path>\drivers</Path>
         <Path>\Dave\Generated\inc\LIBS</Path>
         <Path>\Dave\Generated\inc\DAVESupport</Path>
-        <Path>\drivers</Path>
     </Include_Path>
     <Preprocessor_Symbols>
         <Assembler_Symbol>DAVE_CE=</Assembler_Symbol>

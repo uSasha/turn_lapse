@@ -148,7 +148,7 @@ void run(void)
 	for(uint16_t i = 0; i < turn_angle; i++)
 	{
 		camera_shot(shot_time);
-		delayms((turn_time - shot_time) * 1000 - turn_angle);
+		delay_ms((turn_time - shot_time) * 1000 - turn_angle);
 		motor_turn(turn_angle);
 	}
 }
@@ -156,11 +156,11 @@ void run(void)
 void showMenu(void)
 {
 	uint8_t y = 0;
-	delayms(2);
+	delay_ms(2);
 	LCDClear();
-	delayms(2);
+	delay_ms(2);
 	gotoXY(0, 0);
-	delayms(2);
+	delay_ms(2);
 
 	for(uint8_t i = 0; i < NUMBER_OF_STATES; i++)
 	{
@@ -193,10 +193,10 @@ void showMenu(void)
 			}
 			LCDString(str);
 			y++;					// new line
-			delayms(2);
+			delay_ms(2);
 			gotoXY(0, y);
-			delayms(2);
+			delay_ms(2);
 		}
-		delayms(2);
+		delay_ms(2);
 	}
 }

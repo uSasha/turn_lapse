@@ -151,10 +151,10 @@ void IO004_Init(void)
   
   IO004_Handle3.PortRegs->IOCR0 |= (0U << 3);   
 
-  /* Configuration of 1 Port 1 based on User configuration */
-  IO004_Handle4.PortRegs->OMR = 0U<< 1;
+  /* Configuration of 0 Port 7 based on User configuration */
+  IO004_Handle4.PortRegs->OMR = 0U<< 7;
   
-  IO004_Handle4.PortRegs->IOCR0 |= (0U << 11);
+  IO004_Handle4.PortRegs->IOCR4 |= (0U << 27);
 }
 
 void IO004_DisableOutputDriver(const IO004_HandleType* Handle,IO004_InputModeType Mode)

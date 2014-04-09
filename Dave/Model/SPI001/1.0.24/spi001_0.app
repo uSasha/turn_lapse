@@ -887,7 +887,7 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
     <requiredResource uriString="peripheral/usic/*/channel/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="MRST/MTSR1HW" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = Solver.getResource(&quot;Mode_dummy&quot;);&#xD;&#xA;                    var value1 = Solver.getIntValue(Res1);&#xD;&#xA;                    if ((value1 == 0)||(value1 > 1)){&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/mrst0_pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P1/P1_1.dd#//@provided.11"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P1/P1_1.dd#//@provided.14"/>
     <requiredResource uriString="port/p/*/pad/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="MTSR/MTSR0HW" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = Solver.getResource(&quot;Mode_dummy&quot;);&#xD;&#xA;                    var value1 = Solver.getIntValue(Res1);&#xD;&#xA;                    if ((value1 &lt;= 3)){&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/mtsr0_pin">
@@ -1074,7 +1074,7 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/mrst0_pin/pad" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.1"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.12"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.15"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/channel/standard_receive_buffer_int" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.86"/>

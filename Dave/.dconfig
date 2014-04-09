@@ -19,7 +19,7 @@
             <BindMap MUri="peripheral/scu/0/ccu/clkgating/ccu4/0" Proxy="app/clk002/0/clkgating_ccu4"/>
             <BindMap MUri="port/p/0/pad/0" Proxy="app/spi001/0/chipselecta_pin"/>
             <BindMap MUri="peripheral/scu/0/ccu/config" Proxy="app/clk002/0/clk_uri"/>
-            <BindMap MUri="port/p/1/pad/1" Proxy="app/io004/4/pin"/>
+            <BindMap MUri="port/p/0/pad/7" Proxy="app/io004/4/pin"/>
             <BindMap MUri="port/p/2/pad/1" Proxy="app/uart001/0/uart_txpin"/>
             <BindMap MUri="port/p/2/pad/2" Proxy="app/uart001/0/uart_rxpin"/>
             <BindMap MUri="port/p/1/pad/2" Proxy="app/spi001/0/mrst0_pin"/>
