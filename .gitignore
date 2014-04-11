@@ -37,6 +37,15 @@ local.properties
 
 
 #################
+## Dave
+#################
+*.dd
+*.app
+*.dconfig
+*.applicationmodel
+
+
+#################
 ## Keil
 #################
 *.htm
