@@ -28,11 +28,9 @@ void delay_ms(uint32_t delay)
 }
 
 
-void delay_us(uint32_t delay)
+extern __inline__ void delay_us(uint32_t delay)
 {
 	for(uint32_t j = 0; j < delay; j++)
 	{
-		for(uint32_t i = 0; i <= 100; i++)
-		{}
 	}
 }

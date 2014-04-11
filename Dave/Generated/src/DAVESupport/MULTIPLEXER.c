@@ -151,8 +151,13 @@ void DAVE_MUX_Init(void)
   WR_REG(PORT0->IOCR4, PORT_IOCR_PC2_OE_Msk, PORT_IOCR_PC2_OE_Pos, PORT_IOCR_OE1);                /*    P0.6 : PORT0_IOCR4_PC6_OE */					   
 					                         
   WR_REG(PORT0->IOCR4, PORT_IOCR_PC3_OE_Msk, PORT_IOCR_PC3_OE_Pos, PORT_IOCR_OE1);                /*    P0.7 : PORT0_IOCR4_PC7_OE */					   
-					                         
-  WR_REG(PORT1->IOCR0, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P1.0 : PORT1_IOCR0_PC0_OE */					   
+					    
+                       
+  /* Masking P0.8, Since Upon reset, the value of PC8 (P0.8) is 00000b. 
+  The startup software (SSW) will change the PC8 value to input pull-up device active, 00010b. */ 
+  WR_REG(PORT0->IOCR8, PORT_IOCR_PC0_PCR_Msk, PORT_IOCR_PC0_PCR_Pos, PORT_IOCR_PCR0);            /*    P0.8 : PORT0_IOCR8_PC8_PCR */
+                                            
+  WR_REG(PORT0->IOCR8, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P0.8 : PORT0_IOCR8_PC8_OE */					   
 					                         
   WR_REG(PORT1->IOCR0, PORT_IOCR_PC3_OE_Msk, PORT_IOCR_PC3_OE_Pos, PORT_IOCR_OE1);                /*    P1.3 : PORT1_IOCR0_PC3_OE */					   
 					  

@@ -8,6 +8,6 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
-void camera_shot(uint16_t shot_time);
+void camera_shot(void);
 
 #endif /* CAMERA_H_ */

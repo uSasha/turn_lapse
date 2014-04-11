@@ -94,9 +94,9 @@ const IO004_HandleType IO004_Handle2 = {
 
 
 const IO004_HandleType IO004_Handle3 = {
-  .PortNr   = 1U , /* Mapped Port */
-  .PortPin  = 0U,   /* Mapped Pin */
-  .PortRegs = (IO004_PORTS_TypeDef*)PORT1_BASE /* Port Base Address*/		
+  .PortNr   = 0U , /* Mapped Port */
+  .PortPin  = 8U,   /* Mapped Pin */
+  .PortRegs = (IO004_PORTS_TypeDef*)PORT0_BASE /* Port Base Address*/		
 };
    
 

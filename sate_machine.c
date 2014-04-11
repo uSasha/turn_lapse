@@ -147,8 +147,8 @@ void run(void)
 
 	for(uint16_t i = 0; i < turn_angle; i++)
 	{
-		camera_shot(shot_time);
-		delay_ms((turn_time - shot_time) * 1000 - turn_angle);
+		camera_shot();
+		delay_ms((turn_time - shot_time) * 1000 - turn_angle);	//TODO убрать коэфицент
 		motor_turn(turn_angle);
 	}
 }
@@ -164,7 +164,7 @@ void showMenu(void)
 
 	for(uint8_t i = 0; i < NUMBER_OF_STATES; i++)
 	{
-		if(i == state)			// draw cursor
+		if(i == state)			// draw cursor near current state name
 		{
 			LCDString(">");
 		}else

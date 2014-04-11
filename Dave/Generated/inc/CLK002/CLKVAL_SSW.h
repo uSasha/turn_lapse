@@ -93,7 +93,7 @@ extern "C" {
 /*System Software Data, used during Startup*/
 
 #define   CLK002_SSW_PCLKSEL            (0)
-#define   CLK002_SSW_IDIV               (4)      
+#define   CLK002_SSW_IDIV               (1)      
 #define   CLK002_SSW_FDIV               (0)    
 #define   CLK002_SSW_RTCCLKSEL          (0)
 

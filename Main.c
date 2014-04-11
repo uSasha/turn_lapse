@@ -13,6 +13,7 @@
 #include "display_5110.h"
 #include "delay.h"
 #include "state_machine.h"
+#include "camera.h"
 
 handle_t delay_TimerId;
 uint16_t data = 0xAAAA;
@@ -20,18 +21,12 @@ uint16_t data = 0xAAAA;
 int main(void)
 {
 	DAVE_Init();			// Initialization of DAVE Apps
-	for(;;)
-	{
-		IO004_SetPin(IO004_Handle4);
-//		delay_us(1);
-		IO004_ResetPin(IO004_Handle4);
-	}
+
 	delay_TimerId = SYSTM001_CreateTimer(1,SYSTM001_PERIODIC,timer_tick,NULL);
+
 	display_init();
-
-
 	LCDClear();
-	LCDString("Hello World!");
+	LCDString("Turn Lapse");
 
 	while(1)
 	{

@@ -146,10 +146,10 @@ void IO004_Init(void)
   
   IO004_Handle2.PortRegs->IOCR0 |= (0U << 27);   
 
-  /* Configuration of 1 Port 0 based on User configuration */
-  IO004_Handle3.PortRegs->OMR = 0U<< 0;
+  /* Configuration of 0 Port 8 based on User configuration */
+  IO004_Handle3.PortRegs->OMR = 0U<< 8;
   
-  IO004_Handle3.PortRegs->IOCR0 |= (0U << 3);   
+  IO004_Handle3.PortRegs->IOCR8 |= (0U << 3);   
 
   /* Configuration of 0 Port 7 based on User configuration */
   IO004_Handle4.PortRegs->OMR = 0U<< 7;
