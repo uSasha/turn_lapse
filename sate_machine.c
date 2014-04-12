@@ -66,22 +66,15 @@ STyp FSM[NUMBER_OF_STATES]=
 };
 
 
-uint16_t getSensors(void)
+uint16_t getInput(void)
 {
 	data -= '0';		// atoi conversion
 	return data;
-	/*
-	if(data == '0')
-		return 0;
-	if(data == '1')
-		return 1;
-	return 2;
-	*/
 }
 
 void process_states(void)
 {
-	input = getSensors();					// get input
+	input = getInput();					// get input
 	if(input < NUMBER_OF_STATES)
 	{
 		state = FSM[state].next[input];		// change state
@@ -144,11 +137,15 @@ void menuRun(void)
 void run(void)
 {
 	uint16_t turn_time = lapse_time / turn_angle;
+	if(turn_time < shot_time)
+	{
+		turn_time = shot_time;
+	}
 
 	for(uint16_t i = 0; i < turn_angle; i++)
 	{
 		camera_shot();
-		delay_ms((turn_time - shot_time) * 1000 - turn_angle);	//TODO убрать коэфицент
+		delay_ms((turn_time - shot_time) * 1000);	//TODO убрать коэфицент, добавить поправку на время поворота платформы
 		motor_turn(turn_angle);
 	}
 }

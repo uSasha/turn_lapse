@@ -10,9 +10,19 @@
 
 
 
+//#define delay_7300US 	for(int i = 0; i < 10450; i++)
+//#define delay_11US		for(int i = 0; i < 18; i++)
+
+
+#define delay_7125US 	for(int i = 0; i < 10050; i++)
+#define delay_15US		for(int i = 0; i < 24; i++)
+
+
+
 void camera_shot(void)
 {
-	for(int i=0; i<16; i++)
+//	for(int i=0; i<16; i++)
+	for(int i=0; i<22; i++)
 	{
 		IO004_SetPin(IO004_Handle4);
 		delay_11US;
@@ -22,7 +32,8 @@ void camera_shot(void)
 
 	delay_7300US;
 
-	for(int i=0; i<16; i++)
+//	for(int i=0; i<16; i++)
+	for(int i=0; i<22; i++)
 	{
 		IO004_SetPin(IO004_Handle4);
 		delay_11US;

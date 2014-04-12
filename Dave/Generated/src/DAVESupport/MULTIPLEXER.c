@@ -88,7 +88,20 @@
 void DAVE_MUX_Init(void)
 {              	         
                                      
-       /*        SCU Macro definitions     */                  
+       /*        SCU Macro definitions     */                              	         
+                                                   
+/*        ERU0 Macro definitions:         */  
+
+  WR_REG(ERU0->EXISEL, ERU_EXISEL_EXS2A_Msk, ERU_EXISEL_EXS2A_Pos, SIGNAL_ERU_xA1);                /*    ERU0_EXISEL_EXS2A */
+
+  WR_REG(ERU0->EXICON[2], ERU_EXICON_PE_Msk, ERU_EXICON_PE_Pos, SIGNAL_TR1);                            /*    ERU0_EXICON[2]_PE */
+
+  WR_REG(ERU0->EXICON[2], ERU_EXICON_OCS_Msk, ERU_EXICON_OCS_Pos, SIGNAL_TRx3);                        /*    ERU0_EXICON[2]_OCS */
+
+  WR_REG(ERU0->EXICON[3], ERU_EXICON_PE_Msk, ERU_EXICON_PE_Pos, SIGNAL_TR1);                            /*    ERU0_EXICON[3]_PE */
+
+  WR_REG(ERU0->EXICON[3], ERU_EXICON_OCS_Msk, ERU_EXICON_OCS_Pos, SIGNAL_TRx2);                        /*    ERU0_EXICON[3]_OCS */  
+/*        ERU1 Macro definitions:         */      
       /* Variable to store the CCR_MODE values for various USIC channels */
       uint32_t UsicCcrMode[6] = {0};      
 //********* MODULE USIC CONFIGURATIONS *************************	        
@@ -192,10 +205,14 @@ void DAVE_MUX_Init(void)
 *******************************************************************************/
  
 void DAVE_MUX_PreInit(void)
-{            
+{                
 
 /*        PORT Macro definitions for IOCR_OE, IOCR_PCR & HWSEL_HW     */               
            
-  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS2_Msk, PORT2_PDISC_PDIS2_Pos, PORT_PDISC_PDIS0);            /*    P2.2 : PORT2_PDISC_PDIS2 */    
+  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS2_Msk, PORT2_PDISC_PDIS2_Pos, PORT_PDISC_PDIS0);            /*    P2.2 : PORT2_PDISC_PDIS2 */
+           
+  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS6_Msk, PORT2_PDISC_PDIS6_Pos, PORT_PDISC_PDIS0);            /*    P2.6 : PORT2_PDISC_PDIS6 */
+           
+  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS9_Msk, PORT2_PDISC_PDIS9_Pos, PORT_PDISC_PDIS0);            /*    P2.9 : PORT2_PDISC_PDIS9 */    
 }
 

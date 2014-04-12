@@ -43,3 +43,15 @@ int main(void)
 	return 0;
 }
 
+
+void encoder_B_Handler(void)
+{
+	 NVIC002_ClearPendingIRQ(&NVIC002_Handle2);
+}
+
+
+void encoder_L_Handler(void)
+{
+	 NVIC002_ClearPendingIRQ(&NVIC002_Handle0);
+}
+
