@@ -437,7 +437,7 @@ void  SYSTM001_Init( void)
   {
         DBG002_ERROR(APP_GID, DBG002_MESSAGEID_LITERAL, sizeof(Status), &Status);
   }
-    NVIC_SetPriority(SysTick_IRQn, 1);
+    NVIC_SetPriority(SysTick_IRQn, 0);
   TimerTracker = 0UL;
 
 }

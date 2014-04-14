@@ -109,9 +109,9 @@ const ERU001_HandleType ERU001_Handle0 = {
   /* Rebuild Level Detection for Status Flag for ETL2 */ 
   .LevelDetect     = (uint8_t)1,
   /* Rising Edge Detection Enable for ETL2  */
-  .RiseEdgeDetEn   = (uint8_t)1,
+  .RiseEdgeDetEn   = (uint8_t)0,
   /* Falling Edge Detection Enable for ETL2  */
-  .FallEdgeDetEn   = (uint8_t)0,
+  .FallEdgeDetEn   = (uint8_t)1,
   /* Input Source Select for ERS2  */
   .InputSrcSel     = (uint8_t)0,
   /* Input A Negation Select for ERS2  */

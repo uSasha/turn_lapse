@@ -81,7 +81,7 @@ const ERU002_HandleType ERU002_Handle0 = {
   /* InputChannel  */
   .OutputChannel = (uint8_t)3,
   
-  .GP_Value = 0,
+  .GP_Value = 1,
   
   .GEEN_Value = 0
 };
@@ -92,7 +92,7 @@ const ERU002_HandleType ERU002_Handle2 = {
   /* InputChannel  */
   .OutputChannel = (uint8_t)2,
   
-  .GP_Value = 0,
+  .GP_Value = 1,
   
   .GEEN_Value = 0
 }; 

@@ -5,15 +5,13 @@
  *      Author: Alexander
  */
 
-
-
-
-
 #include <DAVE3.h>			//Declarations from DAVE3 Code Generation (includes SFR declaration)
 #include "display_5110.h"
 #include "delay.h"
 #include "state_machine.h"
 #include "camera.h"
+
+
 
 handle_t delay_TimerId;
 uint16_t data = 0xAAAA;
@@ -26,7 +24,8 @@ int main(void)
 
 	display_init();
 	LCDClear();
-	LCDString("Turn Lapse");
+
+	state_machine_init();
 
 	while(1)
 	{
@@ -42,16 +41,3 @@ int main(void)
 	}
 	return 0;
 }
-
-
-void encoder_B_Handler(void)
-{
-	 NVIC002_ClearPendingIRQ(&NVIC002_Handle2);
-}
-
-
-void encoder_L_Handler(void)
-{
-	 NVIC002_ClearPendingIRQ(&NVIC002_Handle0);
-}
-

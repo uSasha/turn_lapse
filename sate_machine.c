@@ -10,6 +10,7 @@
 #include "delay.h"
 #include "camera.h"
 #include "motor.h"
+#include "encoder.h"
 
 // states
 #define MENU_SET_TIME		0
@@ -19,8 +20,10 @@
 #define MENU_SET_SHOT		4
 #define SET_SHOT			5
 #define MENU_RUN			6
-#define RUN					7
-#define NUMBER_OF_STATES	8
+#define NUMBER_OF_STATES	7
+
+
+#define MAX_VALUE					100
 
 
 void menuSetTime(void);
@@ -34,11 +37,12 @@ void run(void);
 void showMenu(void);
 
 
-extern 	uint16_t data;
+
+extern uint16_t data;
 uint16_t input;
 unsigned long state	= MENU_SET_TIME; // index into current state
 // globals that rule timelapse behavior
-uint32_t lapse_time = 0;		// TODO clean
+uint32_t lapse_time = 0;
 uint32_t turn_angle = 0;
 uint32_t shot_time = 0;
 
@@ -54,35 +58,32 @@ struct State
 typedef const struct State STyp;
 
 STyp FSM[NUMBER_OF_STATES]=
-{	// output		message 		'0'					'1'
-	{&menuSetTime,	"time   ",		{MENU_SET_ANGLE,	SET_TIME		}},
-	{&setTime,		"",				{SET_TIME,			MENU_SET_TIME	}},
-	{&menuSetAngle,	"angle  ",		{MENU_SET_SHOT,		SET_ANGLE		}},
-	{&setAngle,		"",				{SET_ANGLE,			MENU_SET_ANGLE	}},
-	{&menuSetShot,	"shot   ",		{MENU_RUN,			SET_SHOT		}},
-	{&setShot,		"",				{SET_SHOT,			MENU_SET_SHOT	}},
-	{&menuRun,		"run    ",		{MENU_SET_TIME,		RUN				}},
-	{&run,			"",				{RUN,				MENU_RUN		}}
+{	// output		message 		'CLOCKWISE'			'COUNTERCLOWISE'	'BUTTON_PUSH'
+	{&menuSetTime,	"time   ",		{MENU_SET_ANGLE,	MENU_RUN,			SET_TIME		}},
+	{&setTime,		"",				{SET_TIME,			SET_TIME,			MENU_SET_TIME	}},
+	{&menuSetAngle,	"angle  ",		{MENU_SET_SHOT,		MENU_SET_TIME,		SET_ANGLE		}},
+	{&setAngle,		"",				{SET_ANGLE,			SET_ANGLE,			MENU_SET_ANGLE	}},
+	{&menuSetShot,	"shot   ",		{MENU_RUN,			MENU_SET_ANGLE,		SET_SHOT		}},
+	{&setShot,		"",				{SET_SHOT,			SET_SHOT,			MENU_SET_SHOT	}},
+	{&menuRun,		"run    ",		{MENU_SET_TIME,		MENU_SET_SHOT,		MENU_RUN		}}
 };
-
-
-uint16_t getInput(void)
-{
-	data -= '0';		// atoi conversion
-	return data;
-}
 
 void process_states(void)
 {
-	input = getInput();					// get input
-	if(input < NUMBER_OF_STATES)
+	input = getInput();						// get input
+	if(input != NO_INPUT)
 	{
 		state = FSM[state].next[input];		// change state
 		(FSM[state].CmdPt)();				// call output function
 	}
-	input = NUMBER_OF_STATES;				// clear input
+	input = NO_INPUT;						// clear input
 }
 
+void state_machine_init(void)
+{
+	state = MENU_SET_TIME;
+	showMenu();
+}
 
 void menuSetTime(void)
 {
@@ -91,11 +92,14 @@ void menuSetTime(void)
 
 void setTime(void)
 {
-	if(input == 0)
+	if(input == CLOCKWISE && lapse_time < MAX_VALUE)
 	{
 		lapse_time++;
+	}else
+	if(input == COUNTERCLOCKWISE && lapse_time > 0)
+	{
+		lapse_time--;
 	}
-
 	showMenu();
 }
 
@@ -106,11 +110,14 @@ void menuSetAngle(void)
 
 void setAngle(void)
 {
-	if(input == 0)
+	if(input == CLOCKWISE && turn_angle < MAX_VALUE)
 	{
 		turn_angle++;
+	}else
+	if(input == COUNTERCLOCKWISE && turn_angle > 0)
+	{
+		turn_angle--;
 	}
-
 	showMenu();
 }
 
@@ -121,33 +128,40 @@ void menuSetShot(void)
 
 void setShot(void)
 {
-	if(input == 0)
+	if(input == CLOCKWISE && shot_time < MAX_VALUE)
 	{
 		shot_time++;
+	}else
+	if(input == COUNTERCLOCKWISE && shot_time > 0)
+	{
+		shot_time--;
 	}
-
 	showMenu();
 }
 
 void menuRun(void)
 {
+	if(input == BUTTON_PUSH)
+	{
+		uint16_t turn_time = lapse_time / turn_angle;
+		if(turn_time < shot_time)
+		{
+			turn_time = shot_time;
+		}
+
+		for(uint16_t i = 0; i < turn_angle; i++)
+		{
+			camera_shot();
+			delay_ms((turn_time - shot_time) * 1000);	//TODO убрать коэфицент, добавить поправку на время поворота платформы
+			motor_turn(turn_angle);
+			IO004_TogglePin(IO004_Handle6);
+		}
+	}
 	showMenu();
 }
 
 void run(void)
 {
-	uint16_t turn_time = lapse_time / turn_angle;
-	if(turn_time < shot_time)
-	{
-		turn_time = shot_time;
-	}
-
-	for(uint16_t i = 0; i < turn_angle; i++)
-	{
-		camera_shot();
-		delay_ms((turn_time - shot_time) * 1000);	//TODO убрать коэфицент, добавить поправку на время поворота платформы
-		motor_turn(turn_angle);
-	}
 }
 
 void showMenu(void)
@@ -183,9 +197,6 @@ void showMenu(void)
 					break;
 				case SET_SHOT:
 					sprintf(str, "%d", (int)shot_time);
-					break;
-				case RUN:
-					sprintf(str, " ");
 					break;
 			}
 			LCDString(str);

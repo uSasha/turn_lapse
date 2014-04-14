@@ -109,10 +109,26 @@ const IO004_HandleType IO004_Handle4 = {
    
 
 
-const IO004_HandleType IO004_Handle5 = {
-  .PortNr   = 2U , /* Mapped Port */
+const IO004_HandleType IO004_Handle6 = {
+  .PortNr   = 1U , /* Mapped Port */
   .PortPin  = 0U,   /* Mapped Pin */
-  .PortRegs = (IO004_PORTS_TypeDef*)PORT2_BASE /* Port Base Address*/		
+  .PortRegs = (IO004_PORTS_TypeDef*)PORT1_BASE /* Port Base Address*/		
+};
+   
+
+
+const IO004_HandleType IO004_Handle7 = {
+  .PortNr   = 1U , /* Mapped Port */
+  .PortPin  = 1U,   /* Mapped Pin */
+  .PortRegs = (IO004_PORTS_TypeDef*)PORT1_BASE /* Port Base Address*/		
+};
+   
+
+
+const IO004_HandleType IO004_Handle8 = {
+  .PortNr   = 0U , /* Mapped Port */
+  .PortPin  = 15U,   /* Mapped Pin */
+  .PortRegs = (IO004_PORTS_TypeDef*)PORT0_BASE /* Port Base Address*/		
 };
 
 /*CODE_BLOCK_END*/

@@ -9,6 +9,7 @@
 #define STATE_MACHINE_H_
 
 
+void state_machine_init(void);
 void process_states(void);
 
 #endif /* STATE_MACHINE_H_ */

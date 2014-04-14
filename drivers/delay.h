@@ -8,6 +8,7 @@
 #ifndef DELAY_H_
 #define DELAY_H_
 
+#define delay_11US()		for(int i = 0; i < 18; i++)
 
 void delay_ms(uint32_t delay);
 void delay_us(uint32_t delay);

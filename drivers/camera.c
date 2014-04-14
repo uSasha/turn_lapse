@@ -21,23 +21,21 @@
 
 void camera_shot(void)
 {
-//	for(int i=0; i<16; i++)
 	for(int i=0; i<22; i++)
 	{
 		IO004_SetPin(IO004_Handle4);
-		delay_11US;
+		delay_15US;
 		IO004_ResetPin(IO004_Handle4);
-		delay_11US;
+		delay_15US;
 	}
 
-	delay_7300US;
+	delay_7125US;
 
-//	for(int i=0; i<16; i++)
 	for(int i=0; i<22; i++)
 	{
 		IO004_SetPin(IO004_Handle4);
-		delay_11US;
+		delay_15US;
 		IO004_ResetPin(IO004_Handle4);
-		delay_11US;
+		delay_15US;
 	}
 }
