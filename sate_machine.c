@@ -24,11 +24,8 @@
 #define MENU_SET_SHOTS		8
 #define SET_SHOTS			9
 #define MENU_RUN			10
-
-//#define NUMBER_OF_STATES	7
 #define NUMBER_OF_STATES	11
 
-#define MAX_VALUE					100
 
 
 void menuSetTime(void);
@@ -37,25 +34,25 @@ void menuSetAngle(void);
 void setAngle(void);
 void menuSetShutter(void);
 void setShutter(void);
-void menuRun(void);
-void run(void);
-void showMenu(void);
 void menuSetTurn(void);
 void setTurn(void);
 void menuSetShots(void);
 void setShots(void);
-//void (void);
-
+void menuRun(void);
+void run(void);
+void showMenu(void);
+void setValue(void);
+void computeValue(void);
 
 extern uint16_t data;
 uint16_t input;
 unsigned long state	= MENU_SET_TIME; // index into current state
 // globals that rule timelapse behavior
-uint32_t time = 0;
-uint32_t angle = 0;
-uint32_t shutter = 0;
-uint32_t turn = 0;
-uint32_t shots = 0;
+uint32_t time 		= 1;		// minutes
+uint32_t angle 		= 90;		// degrees
+uint32_t shutter 	= 1;	// seconds / 2
+uint32_t turn 		= 1;		// one turn angle degrees
+uint32_t shots 		= 1;
 
 
 // Linked data structure
@@ -63,24 +60,28 @@ struct State
 {
 	void (*CmdPt)(void);
 	char str[12];
-	unsigned long next[NUMBER_OF_STATES];
+	unsigned long next[NUMBER_OF_BUTTONS];
+	uint32_t *var_ptr;
+	uint32_t step;
+	uint32_t min;
+	uint32_t max;
 };
 
 typedef const struct State STyp;
 
 STyp FSM[NUMBER_OF_STATES]=
-{	// output			message 		'CLOCKWISE'			'COUNTERCLOWISE'	'BUTTON_PUSH'
-	{&menuSetShutter,	"shutter",		{MENU_SET_ANGLE,	MENU_RUN,			SET_SHUTTER			}},
-	{&setShutter,		"",				{SET_SHUTTER,		SET_SHUTTER,		MENU_SET_SHUTTER	}},
-	{&menuSetAngle,		"angle  ",		{MENU_SET_TIME,		MENU_SET_SHUTTER,	SET_ANGLE			}},
-	{&setAngle,			"",				{SET_ANGLE,			SET_ANGLE,			MENU_SET_ANGLE		}},
-	{&menuSetTime,		"time   ",		{MENU_SET_TURN,		MENU_SET_ANGLE,		SET_TIME			}},
-	{&setTime,			"",				{SET_TIME,			SET_TIME,			MENU_SET_TIME		}},
-	{&menuSetTurn,		"turn   ",		{MENU_SET_SHOTS,	MENU_SET_TIME,		SET_TURN			}},
-	{&setTurn,			"",				{SET_TURN,			SET_TURN,			MENU_SET_TURN		}},
-	{&menuSetShots,		"shots  ",		{MENU_RUN,			MENU_SET_TURN,		SET_SHOTS			}},
-	{&setShots,			"",				{SET_SHOTS,			SET_SHOTS,			MENU_SET_SHOTS		}},
-	{&menuRun,			"run    ",		{MENU_SET_SHUTTER,	MENU_SET_SHOTS,		MENU_RUN			}}
+{	// output			message 		'CLOCKWISE'			'COUNTERCLOWISE'	'BUTTON_PUSH'		variable	step	min		max
+	{&menuSetShutter,	"shutter",		{MENU_SET_ANGLE,	MENU_RUN,			SET_SHUTTER},		&shutter,	0,		0,		0	},
+	{&setShutter,		"",				{SET_SHUTTER,		SET_SHUTTER,		MENU_SET_SHUTTER},	&shutter,	1,		1,		240	},	// seconds/2
+	{&menuSetAngle,		"angle  ",		{MENU_SET_TIME,		MENU_SET_SHUTTER,	SET_ANGLE},			&angle,		0,		0,		0	},
+	{&setAngle,			"",				{SET_ANGLE,			SET_ANGLE,			MENU_SET_ANGLE},	&angle,		10,		10,		360	},	// degrees
+	{&menuSetTime,		"time   ",		{MENU_SET_TURN,		MENU_SET_ANGLE,		SET_TIME},			&time,		0,		0,		0	},
+	{&setTime,			"",				{SET_TIME,			SET_TIME,			MENU_SET_TIME},		&time,		1,		1,		360	},	// minutes
+	{&menuSetTurn,		"turn   ",		{MENU_SET_SHOTS,	MENU_SET_TIME,		SET_TURN},			&turn,		0,		0,		0	},
+	{&setTurn,			"",				{SET_TURN,			SET_TURN,			MENU_SET_TURN},		&turn,		1,		1,		10	},	// dergees
+	{&menuSetShots,		"shots  ",		{MENU_RUN,			MENU_SET_TURN,		SET_SHOTS},			&shots,		0,		0,		0	},
+	{&setShots,			"",				{SET_SHOTS,			SET_SHOTS,			MENU_SET_SHOTS},	&shots,		10,		10,		360	},	// number
+	{&menuRun,			"run    ",		{MENU_SET_SHUTTER,	MENU_SET_SHOTS,		MENU_RUN},			&shutter,	0,		0,		0	}
 };
 /*
 STyp FSM[NUMBER_OF_STATES]=
@@ -119,14 +120,8 @@ void menuSetTime(void)
 
 void setTime(void)
 {
-	if(input == CLOCKWISE && time < MAX_VALUE)
-	{
-		time++;
-	}else
-	if(input == COUNTERCLOCKWISE && time > 0)
-	{
-		time--;
-	}
+	setValue();
+	computeValue();
 	showMenu();
 }
 
@@ -137,14 +132,8 @@ void menuSetAngle(void)
 
 void setAngle(void)
 {
-	if(input == CLOCKWISE && angle < MAX_VALUE)
-	{
-		angle++;
-	}else
-	if(input == COUNTERCLOCKWISE && angle > 0)
-	{
-		angle--;
-	}
+	setValue();
+	computeValue();
 	showMenu();
 }
 
@@ -155,16 +144,39 @@ void menuSetShutter(void)
 
 void setShutter(void)
 {
-	if(input == CLOCKWISE && shutter < MAX_VALUE)
-	{
-		shutter++;
-	}else
-	if(input == COUNTERCLOCKWISE && shutter > 0)
-	{
-		shutter--;
-	}
+	setValue();
+	computeValue();
 	showMenu();
 }
+
+
+void menuSetTurn(void)
+{
+	showMenu();
+}
+
+
+void setTurn(void)
+{
+	setValue();
+	computeValue();
+	showMenu();
+}
+
+
+void menuSetShots(void)
+{
+	showMenu();
+}
+
+
+void setShots(void)
+{
+	setValue();
+	computeValue();
+	showMenu();
+}
+
 
 void menuRun(void)
 {
@@ -187,42 +199,6 @@ void menuRun(void)
 	showMenu();
 }
 
-void menuSetTurn(void)
-{
-	showMenu();
-}
-void setTurn(void)
-{
-	if(input == CLOCKWISE && time < MAX_VALUE)
-	{
-		turn += 10;
-	}else
-	if(input == COUNTERCLOCKWISE && time > 0)
-	{
-		turn -= 10;
-	}
-	showMenu();
-}
-void menuSetShots(void)
-{
-	showMenu();
-}
-void setShots(void)
-{
-	if(input == CLOCKWISE && time < MAX_VALUE)
-	{
-		shots++;
-	}else
-	if(input == COUNTERCLOCKWISE && time > 0)
-	{
-		shots--;
-	}
-	showMenu();
-}
-
-void run(void)
-{
-}
 
 void showMenu(void)
 {
@@ -274,3 +250,61 @@ void showMenu(void)
 		delay_ms(2);
 	}
 }
+
+
+void setValue(void)
+{
+	if(input == CLOCKWISE && *FSM[state].var_ptr < FSM[state].max)
+	{
+		*FSM[state].var_ptr += FSM[state].step;
+	}else
+	if(input == COUNTERCLOCKWISE && *FSM[state].var_ptr > FSM[state].min)
+	{
+		*FSM[state].var_ptr -= FSM[state].step;
+	}
+}
+
+
+void computeValue(void)
+{
+	switch (state)
+	{
+	case SET_SHUTTER:
+
+	case SET_ANGLE:
+		time = shutter * angle / turn / 120;	// seconds/2 -> minutes
+		if(time > FSM[SET_TIME].max)
+		{
+			time = FSM[SET_TIME].max;
+		}else
+		if(time < FSM[SET_TIME].min)
+		{
+			time = FSM[SET_TIME].min;
+		}
+	case SET_TIME:
+		turn = angle * shutter / time / 120;	// seconds/2 -> minutes
+		if(turn > FSM[SET_TURN].max)
+		{
+			turn = FSM[SET_TURN].max;
+		}else
+		if(turn < FSM[SET_TURN].min)
+		{
+			turn = FSM[SET_TURN].min;
+		}
+
+	case SET_TURN:
+		shots = angle / turn;
+		if(shots > FSM[SET_SHOTS].max)
+		{
+			shots = FSM[SET_SHOTS].max;
+		}else
+		if(shots < FSM[SET_SHOTS].min)
+		{
+			shots = FSM[SET_SHOTS].min;
+		}
+
+	case SET_SHOTS:
+		break;
+	}
+}
+

@@ -12,6 +12,7 @@
 #define CLOCKWISE			0
 #define COUNTERCLOCKWISE	1
 #define BUTTON_PUSH			2
+#define NUMBER_OF_BUTTONS	3
 
 uint16_t encoder_getInput(void);
 
