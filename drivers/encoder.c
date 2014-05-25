@@ -12,7 +12,7 @@
 uint16_t input = NO_INPUT;
 
 
-uint16_t getInput(void)
+uint16_t encoder_getInput(void)
 {
 	uint16_t temp_input = input;
 	input = NO_INPUT;
@@ -20,18 +20,18 @@ uint16_t getInput(void)
 }
 
 
-void encoder_B_Handler(void)
+void encoder_ButtonHandler(void)
 {
 	debounce();
 	uint32_t button = IO002_ReadPin(IO002_Handle2);
 	if(!button)
 	{
-		input = BUTTON_PUSH;
+		input = BUTTON_PUSH	;
 	}
 }
 
 
-void encoder_L_Handler(void)
+void encoder_TurnHandler(void)
 {
 	uint32_t enc2 = IO004_ReadPin(IO004_Handle8);
 	debounce();

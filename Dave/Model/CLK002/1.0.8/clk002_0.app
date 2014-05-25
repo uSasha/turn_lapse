@@ -101,8 +101,8 @@ Valid clock range is 125 KHz to 32000 KHz.</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:IntegerParameter" name="Desired MCLK during BootROM Firmware Execution" evalFunction="&#xD;&#xA;        function ForwardMapping()&#xD;&#xA;        {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var Res4 = SCM.getResource(&quot;SSWInputFreq&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var InputFreq1 = SCM.getDoubleValue(currentResource);&#xD;&#xA;&#x9;&#x9;&#x9;SCM.setDoubleValue(Res4,InputFreq1);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var userfreq = &#x9;2*InputFreq1;&#xD;&#xA;&#x9;&#x9;&#x9;var freq_fact=64000/userfreq;&#xD;&#xA;&#x9;&#x9;&#x9;var i_div=Math.floor(freq_fact);&#xD;&#xA;&#x9;&#x9;&#x9;if (i_div==256)&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;i_div=i_div-1;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;            var Res3 = SCM.getResource(&quot;SSWidiv&quot;); &#xD;&#xA;            SCM.setIntValue(Res3,i_div);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var temp_f_div=(freq_fact-i_div)*256;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;if (i_div==255)&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;temp_f_div=0;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var f_div;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;var tempfdivfact;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;if (temp_f_div==0)&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;f_div=0;&#x9;&#x9;&#x9;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;tempfdivfact = 0;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;else &#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;f_div=Math.floor(temp_f_div);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;tempfdivfact = f_div/256;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;            var Res4 = SCM.getResource(&quot;SSWfdiv&quot;); &#xD;&#xA;            SCM.setIntValue(Res4,f_div);&#xD;&#xA; &#xD;&#xA;           &#x9;var tempidivfact = i_div;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var DinominatorFact = tempfdivfact+tempidivfact;&#xD;&#xA;&#x9;&#x9;&#x9;var ActDinomiFact = DinominatorFact*2;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var MCLK = 64000/ActDinomiFact;&#xD;&#xA;&#x9;&#x9;&#x9;MCLK = MCLK/1000;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var tempRes = SCM.getResource(&quot;SSWActualMCLK&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;SCM.setDoubleValue(tempRes,MCLK);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var tempRes = SCM.getResource(&quot;SSWPCLKselBit&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value = SCM.getDoubleValue(tempRes);&#xD;&#xA;            var PCLK;&#xD;&#xA;        &#x9;&#xD;&#xA;            if (value == 1 ) &#xD;&#xA; &#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;PCLK = 2* MCLK;&#xD;&#xA;&#x9;&#x9;&#x9;}            &#xD;&#xA;&#x9;       &#x9;else&#xD;&#xA;&#x9;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;PCLK = MCLK;&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var tempRes = SCM.getResource(&quot;SSWActualPCLK&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;SCM.setDoubleValue(tempRes,PCLK);&#xD;&#xA;   &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        function BackwardMapping()&#xD;&#xA;        {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;var Res5 = SCM.getResource(&quot;SSWInputFreq&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;var value5 = SCM.getDoubleValue(Res5);&#xD;&#xA;           &#x9;&#x9;SCM.setDoubleValue(currentResource,value5);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;        " URI="http://www.infineon.com/1.0.8/app/clk002/0/clk002_irwsswdesfreqsystemint" downWardmappedList="//@consumed.25 //@consumed.22 //@consumed.23 //@consumed.21 //@consumed.20" maxValue="7D00" minValue="7D0">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="1F40"/>
-    <localValue xsi:type="ResourceModel:StringValue" value="1F40"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1f40"/>
+    <localValue xsi:type="ResourceModel:StringValue" value="7d00"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="7d00"/>
     <toolTipHelpDescription>Enter Desired MCLK Frequency,
 valid clock range is 2000 KHz to 32000 KHz.
 This frequency will used during BootROM Firmware Execution.</toolTipHelpDescription>
@@ -110,13 +110,13 @@ This frequency will used during BootROM Firmware Execution.</toolTipHelpDescript
   <provided xsi:type="ResourceModel:IntegerParameter" name="Configured PCLK during BootROM Firmware Execution" evalFunction="&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;function ForwardMapping()&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var Res4 = SCM.getResource(&quot;SSWInputFreq&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value3 = SCM.getDoubleValue(Res4);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var Res3 = SCM.getResource(&quot;SSWPCLKselBit&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value2 = SCM.getDoubleValue(Res3);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;        &#xD;&#xA;        function BackwardMapping()&#xD;&#xA;        {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var Res5 = SCM.getResource(&quot;SSWActualPCLK&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value5 = SCM.getDoubleValue(Res5);&#xD;&#xA;&#x9;&#x9;&#x9;SCM.setDoubleValue(currentResource,value5);       &#xD;&#xA;&#xD;&#xA;&#x9;&#x9; }&#xD;&#xA;&#xD;&#xA;        " URI="http://www.infineon.com/1.0.8/app/clk002/0/clk002_irsswpclk" maxValue="40" minValue="00">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="8"/>
     <localValue xsi:type="ResourceModel:StringValue" value="8"/>
-    <globalValue xsi:type="ResourceModel:StringValue" value="8"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="20"/>
     <toolTipHelpDescription>Configured PCLK during BootROM Firmware Execution</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:IntegerParameter" name="Configured MCLK during BootROM Firmware Execution" evalFunction="&#xD;&#xA;        function ForwardMapping()&#xD;&#xA;        {&#xD;&#xA;&#x9;&#x9;&#x9;var Res4 = SCM.getResource(&quot;SSWInputFreq&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value3 = SCM.getDoubleValue(Res4);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var Res3 = SCM.getResource(&quot;SSWPCLKselBit&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value2 = SCM.getDoubleValue(Res3);&#xD;&#xA;&#xD;&#xA;        }&#xD;&#xA;        &#xD;&#xA;        function BackwardMapping()&#xD;&#xA;        {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;var Res5 = SCM.getResource(&quot;SSWActualMCLK&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;var value5 = SCM.getDoubleValue(Res5);&#xD;&#xA;&#x9;&#x9;&#x9;SCM.setDoubleValue(currentResource,value5);       &#xD;&#xA;&#x9; &#x9;}&#xD;&#xA;        " URI="http://www.infineon.com/1.0.8/app/clk002/0/clk002_irsswmclk" maxValue="20" minValue="00">
     <defaultValue xsi:type="ResourceModel:IntegerValue" value="8"/>
     <localValue xsi:type="ResourceModel:StringValue" value="8"/>
-    <globalValue xsi:type="ResourceModel:StringValue" value="8"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="20"/>
     <toolTipHelpDescription>Configured MCLK during BootROM Firmware Execution</toolTipHelpDescription>
   </provided>
   <provided xsi:type="ResourceModel:EnumerationParameter" name="RTC Clock Selection during BootROM Firmware Execution" evalFunction="&#xD;&#xA;            function ForwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var Res = SCM.getResource(&quot;SSWrtcclksel&quot;); &#xD;&#xA;              var value = SCM.getIntValue(currentResource);&#xD;&#xA;              SCM.setIntValue(Res,value);&#xD;&#xA;            }&#xD;&#xA;            function BackwardMapping()&#xD;&#xA;            {&#xD;&#xA;              var Res = SCM.getResource(&quot;SSWrtcclksel&quot;); &#xD;&#xA;              var value = SCM.getIntValue(Res); &#xD;&#xA;              SCM.setIntValue(currentResource,value);&#xD;&#xA;            }" URI="http://www.infineon.com/1.0.8/app/clk002/0/clk002_erwsswrtcclockselection" downWardmappedList="//@consumed.27">
@@ -368,19 +368,19 @@ This frequency will used during BootROM Firmware Execution.</toolTipHelpDescript
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswactualpclk" upWardMappingList="//@provided.8/@item.0 //@provided.9" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="8"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="8"/>
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswactualpclk" upWardMappingList="//@provided.8/@item.0 //@provided.9 //@provided.10" isSystemDefined="true">
+    <localValue xsi:type="ResourceModel:IntegerValue" value="20"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="20"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
-  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswactualmclk" upWardMappingList="//@provided.8/@item.0 //@provided.9" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="8"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="8"/>
+  <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswactualmclk" upWardMappingList="//@provided.8/@item.0 //@provided.9 //@provided.11" isSystemDefined="true">
+    <localValue xsi:type="ResourceModel:IntegerValue" value="20"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="20"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswidiv" upWardMappingList="//@provided.8/@item.0 //@provided.9" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="4"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="4"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="1"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="1"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswfdiv" upWardMappingList="//@provided.8/@item.0 //@provided.9" isSystemDefined="true">
@@ -394,8 +394,8 @@ This frequency will used during BootROM Firmware Execution.</toolTipHelpDescript
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswinputfreq" upWardMappingList="//@provided.8/@item.0 //@provided.9 //@provided.10 //@provided.11" isSystemDefined="true">
-    <localValue xsi:type="ResourceModel:IntegerValue" value="1f40"/>
-    <globalValue xsi:type="ResourceModel:IntegerValue" value="1f40"/>
+    <localValue xsi:type="ResourceModel:IntegerValue" value="7d00"/>
+    <globalValue xsi:type="ResourceModel:IntegerValue" value="7d00"/>
     <requiredResource uriString="" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.8/app/clk002/0/sswpclkselbit" upWardMappingList="//@provided.8/@item.0 //@provided.8/@item.1 //@provided.9 //@provided.10 //@provided.11" isSystemDefined="true">

@@ -13,6 +13,6 @@
 #define COUNTERCLOCKWISE	1
 #define BUTTON_PUSH			2
 
-uint16_t getInput(void);
+uint16_t encoder_getInput(void);
 
 #endif /* ENCODER_H_ */

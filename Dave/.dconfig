@@ -7,26 +7,37 @@
     <Solver>
         <SolverBndMap>
             <BindMap MUri="peripheral/usic/0/channel/0" Proxy="app/uart001/0/channel"/>
-            <BindMap MUri="peripheral/scu/0/ccu/clkgating/vadcshs" Proxy="app/clk002/0/clkgating_vadcshs"/>
             <BindMap MUri="peripheral/scu/0/ccu/clkgating/usic/0" Proxy="app/clk002/0/clkgating_usic"/>
             <BindMap MUri="port/p/2/pad/10" Proxy="app/spi001/0/mtsr0_pin"/>
+            <BindMap MUri="port/p/1/pad/1" Proxy="app/io004/7/pin"/>
+            <BindMap MUri="peripheral/eru/0/ogu/3" Proxy="app/eru002/0/ogu"/>
             <BindMap MUri="peripheral/scu/0/dco/2" Proxy="app/clk002/0/dco_uri"/>
             <BindMap MUri="peripheral/cpu/0/systick" Proxy="app/systm001/0/syst"/>
             <BindMap MUri="peripheral/scu/0/ccu/clkgating/wdt" Proxy="app/clk002/0/clkgating_wdt"/>
-            <BindMap MUri="port/p/1/pad/0" Proxy="app/io004/3/pin"/>
-            <BindMap MUri="port/p/2/pad/11" Proxy="app/spi001/0/clkout_pin"/>
-            <BindMap MUri="peripheral/scu/0/ccu/clkgating/rtc" Proxy="app/clk002/0/clkgating_rtc"/>
             <BindMap MUri="peripheral/scu/0/ccu/clkgating/ccu4/0" Proxy="app/clk002/0/clkgating_ccu4"/>
             <BindMap MUri="port/p/0/pad/0" Proxy="app/spi001/0/chipselecta_pin"/>
-            <BindMap MUri="peripheral/scu/0/ccu/config" Proxy="app/clk002/0/clk_uri"/>
-            <BindMap MUri="port/p/0/pad/7" Proxy="app/io004/4/pin"/>
             <BindMap MUri="port/p/2/pad/1" Proxy="app/uart001/0/uart_txpin"/>
             <BindMap MUri="port/p/2/pad/2" Proxy="app/uart001/0/uart_rxpin"/>
             <BindMap MUri="port/p/1/pad/2" Proxy="app/spi001/0/mrst0_pin"/>
-            <BindMap MUri="port/p/0/pad/6" Proxy="app/io004/1/pin"/>
-            <BindMap MUri="port/p/1/pad/3" Proxy="app/io004/2/pin"/>
+            <BindMap MUri="peripheral/eru/0/ers_etl/2" Proxy="app/eru001/0/ers_etl"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/5" Proxy="app/nvic002/2/nvicnode"/>
+            <BindMap MUri="peripheral/cpu/0/nvic/interrupt/6" Proxy="app/nvic002/0/nvicnode"/>
+            <BindMap MUri="peripheral/eru/0/ogu/2" Proxy="app/eru002/2/ogu"/>
             <BindMap MUri="peripheral/usic/0/channel/1" Proxy="app/spi001/0/channel"/>
+            <BindMap MUri="port/p/2/pad/9" Proxy="app/io002/2/pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/vadcshs" Proxy="app/clk002/0/clkgating_vadcshs"/>
+            <BindMap MUri="peripheral/eru/0/ers_etl/3" Proxy="app/eru001/2/ers_etl"/>
+            <BindMap MUri="port/p/0/pad/8" Proxy="app/io004/3/pin"/>
+            <BindMap MUri="port/p/2/pad/11" Proxy="app/spi001/0/clkout_pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/clkgating/rtc" Proxy="app/clk002/0/clkgating_rtc"/>
+            <BindMap MUri="port/p/0/pad/15" Proxy="app/io004/8/pin"/>
+            <BindMap MUri="peripheral/scu/0/ccu/config" Proxy="app/clk002/0/clk_uri"/>
+            <BindMap MUri="port/p/0/pad/7" Proxy="app/io004/4/pin"/>
+            <BindMap MUri="port/p/0/pad/6" Proxy="app/io004/1/pin"/>
+            <BindMap MUri="port/p/2/pad/6" Proxy="app/io002/0/pin"/>
+            <BindMap MUri="port/p/1/pad/3" Proxy="app/io004/2/pin"/>
             <BindMap MUri="port/p/0/pad/5" Proxy="app/io004/0/pin"/>
+            <BindMap MUri="port/p/1/pad/0" Proxy="app/io004/6/pin"/>
         </SolverBndMap>
     </Solver>
 </ProjectConfig>

@@ -71,10 +71,10 @@ extern "C" {
 #define DEBUG_APP false
   
 /* User defined function mapped to IRQ_Hdlr_6 */
-#define encoder_L_Handler    IRQ_Hdlr_6 
+#define encoder_TurnHandler    IRQ_Hdlr_6 
 
 /* User defined function mapped to IRQ_Hdlr_5 */
-#define encoder_B_Handler    IRQ_Hdlr_5 
+#define encoder_ButtonHandler    IRQ_Hdlr_5 
 
 
 /**

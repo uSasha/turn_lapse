@@ -35,7 +35,6 @@ int main(void)
 			data = UART001_ReadData(UART001_Handle0);
 			UART001_WriteData(UART001_Handle0,data);
 		}
-
 	    process_states();
 	    delay_ms(100);
 	}
