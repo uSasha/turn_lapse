@@ -44,7 +44,7 @@ void display_init(void)
 }
 
 
-void LCDWrite(uint16_t data_or_command, uint16_t data)
+void display_write(uint16_t data_or_command, uint16_t data)
 {
 	IO004_SetOutputValue(IO004_Handle0, data_or_command);
 	while(SPI001_WriteData(&SPI001_Handle0,&data,SPI001_STANDARD) == 0)
@@ -52,64 +52,64 @@ void LCDWrite(uint16_t data_or_command, uint16_t data)
 }
 
 
-void gotoXY(int x, int y)
+void display_gotoXY(int x, int y)
 {
 	x = x % 84;		// TODO check values
 	y = y % 48;		// TODO check values
-	LCDWrite(LCD_COMMAND, 0x80 | x);  // Column.
-	LCDWrite(LCD_COMMAND, 0x40 | y);  // Row.  ?
+	display_write(LCD_COMMAND, 0x80 | x);  // Column.
+	display_write(LCD_COMMAND, 0x40 | y);  // Row.  ?
 }
 
 
 //Clears the LCD by writing zeros to the entire screen
-void LCDClear(void)
+void display_clear(void)
 {
 	delay_ms(1);		// TODO find why this is necessary for proper data transfer
 //	gotoXY(0, 0);
 //	for (int index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
 	for (int index = 0 ; index <= (LCD_X * LCD_Y / 8) ; index++)
 	{
-		LCDWrite(LCD_DATA, 0x00);
+		display_write(LCD_DATA, 0x00);
 		for(int i = 100; i; i--);
 	}
 //	gotoXY(0, 0); //After we clear the display, return to the home position
 }
 
 
-void LCDCharacter(char character)
+void display_character(char character)
 {
-	LCDWrite(LCD_DATA, 0x00); //Blank vertical line padding
+	display_write(LCD_DATA, 0x00); //Blank vertical line padding
 
 	for (int index = 0 ; index < 5 ; index++)
-	LCDWrite(LCD_DATA, ASCII[character - 0x20][index]);
+	display_write(LCD_DATA, ASCII[character - 0x20][index]);
 	//0x20 is the ASCII character for Space (' '). The font table starts with this character
 
-	LCDWrite(LCD_DATA, 0x00); //Blank vertical line padding
+	display_write(LCD_DATA, 0x00); //Blank vertical line padding
 }
 
 
 //Given a string of characters, one by one is passed to the LCD
-void LCDString(char *characters)
+void display_string(char *characters)
 {
 	while (*characters)
 	{
-		LCDCharacter(*characters++);
+		display_character(*characters++);
 	}
 }
 
 
-void LCDBitmap(char my_array[])
+void display_Bitmap(char my_array[])
 {
 	for (int index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
 	{
-		LCDWrite(LCD_DATA, my_array[index]);
+		display_write(LCD_DATA, my_array[index]);
 	}
 }
 
 
 void display_showLogo(void)
 {
-	LCDBitmap(SFEFlameBubble);
+	display_Bitmap(SFEFlameBubble);
 	for(int i = 0; i < LCD_X; i++)
 	{
 //		LCDWrite(LCD_DATA, 0x05);

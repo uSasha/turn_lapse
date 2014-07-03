@@ -887,12 +887,12 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
     <requiredResource uriString="peripheral/usic/*/channel/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="MRST/MTSR1HW" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = Solver.getResource(&quot;Mode_dummy&quot;);&#xD;&#xA;                    var value1 = Solver.getIntValue(Res1);&#xD;&#xA;                    if ((value1 == 0)||(value1 > 1)){&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/mrst0_pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P1/P1_1.dd#//@provided.7"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P1/P1_1.dd#//@provided.21"/>
     <requiredResource uriString="port/p/*/pad/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="MTSR/MTSR0HW" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = Solver.getResource(&quot;Mode_dummy&quot;);&#xD;&#xA;                    var value1 = Solver.getIntValue(Res1);&#xD;&#xA;                    if ((value1 &lt;= 3)){&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/mtsr0_pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P2/P2_2.dd#//@provided.12"/>
-    <requiredResource uriString="port/p/2/pad/10" uriType="LOCALTYPE"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P0/P0_0.dd#//@provided.7"/>
+    <requiredResource uriString="port/p/0/pad/7" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="MTSR2HW" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var Res1 = Solver.getResource(&quot;Mode_dummy&quot;);&#xD;&#xA;                    var value1 = Solver.getIntValue(Res1);&#xD;&#xA;                    if (value1 == 3) {&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/mtsr2_hwpin" constraintFunction="reserved([port,p,PN2,pad,_],mtsr2pin)&#xD;&#xA;                                                        register_range(mtsr2pin,hwsel_hw,[1..2])">
     <requiredResource uriString="port/p/*/pad/*" uriType="LOCALTYPE"/>
@@ -901,12 +901,12 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
     <requiredResource uriString="port/p/*/pad/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="Clock Out" URI="http://www.infineon.com/1.0.24/app/spi001/0/clkout_pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P2/P2_2.dd#//@provided.14"/>
-    <requiredResource uriString="port/p/2/pad/11" uriType="LOCALTYPE"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P0/P0_0.dd#//@provided.9"/>
+    <requiredResource uriString="port/p/0/pad/8" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="ChipSelectA" evalFunction="function resourceCondition() {&#xD;&#xA;                    var Res = Solver.getResource(&quot;spi001_NoofCSLines&quot;);&#xD;&#xA;                    var value = Solver.getIntValue(Res);&#xD;&#xA;                    if (value > 0) {&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/chipselecta_pin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P0/P0_0.dd#//@provided.21"/>
-    <requiredResource uriString="port/p/0/pad/0" uriType="LOCALTYPE"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P0/P0_0.dd#//@provided.11"/>
+    <requiredResource uriString="port/p/0/pad/9" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="ChipSelectB" evalFunction="function resourceCondition() {&#xD;&#xA;                    var Res = Solver.getResource(&quot;spi001_NoofCSLines&quot;);&#xD;&#xA;                    var value = Solver.getIntValue(Res);&#xD;&#xA;                    if (value > 1) {&#xD;&#xA;                        return true; &#xD;&#xA;                    } &#xD;&#xA;                    return false;&#xD;&#xA;&#xD;&#xA;                }" URI="http://www.infineon.com/1.0.24/app/spi001/0/chipselectb_pin">
     <requiredResource uriString="port/p/*/pad/*" uriType="LOCALTYPE"/>
@@ -1074,7 +1074,7 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/mrst0_pin/pad" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.1"/>
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.8"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P1/P1_1.dd#//@provided.22"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/channel/standard_receive_buffer_int" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.86"/>
@@ -1086,10 +1086,10 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.88"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/clkout_pin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.15"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P0/P0_0.dd#//@provided.10"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/mtsr0_pin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.13"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P0/P0_0.dd#//@provided.8"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/channel/dx5ins" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.89"/>
@@ -1102,7 +1102,7 @@ The Inactive level of SCLKOUT is 1 while no data is transferred</toolTipHelpDesc
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.91"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/chipselecta_pin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P0/P0_0.dd#//@provided.22"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P0/P0_0.dd#//@provided.12"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.24/app/spi001/0/channel/selo5" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.92"/>

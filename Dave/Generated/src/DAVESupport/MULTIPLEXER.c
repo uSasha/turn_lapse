@@ -153,24 +153,21 @@ void DAVE_MUX_Init(void)
    WR_REG(USIC0_CH1->CCR, USIC_CH_CCR_MODE_Msk, USIC_CH_CCR_MODE_Pos,UsicCcrMode[1]);   
                        	         
                                                                  	         
-                                                                 	         
                                                  
 
 /*        PORT Macro definitions for IOCR_OE, IOCR_PCR & HWSEL_HW     */                                      
-  WR_REG(PORT0->IOCR0, 0xb8U, PORT_IOCR_PC0_PCR_Pos, 0x17U);                /*P0.0 : PORT0_IOCR0_PC0_PCR and PORT0_IOCR0_PC0_OE */					   
+  WR_REG(PORT0->IOCR0, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P0.0 : PORT0_IOCR0_PC0_OE */					   
 					                         
-  WR_REG(PORT0->IOCR4, PORT_IOCR_PC1_OE_Msk, PORT_IOCR_PC1_OE_Pos, PORT_IOCR_OE1);                /*    P0.5 : PORT0_IOCR4_PC5_OE */					   
-					                         
-  WR_REG(PORT0->IOCR4, PORT_IOCR_PC2_OE_Msk, PORT_IOCR_PC2_OE_Pos, PORT_IOCR_OE1);                /*    P0.6 : PORT0_IOCR4_PC6_OE */					   
-					                         
-  WR_REG(PORT0->IOCR4, PORT_IOCR_PC3_OE_Msk, PORT_IOCR_PC3_OE_Pos, PORT_IOCR_OE1);                /*    P0.7 : PORT0_IOCR4_PC7_OE */					   
+  WR_REG(PORT0->IOCR4, 0xb8000000U, PORT_IOCR_PC3_PCR_Pos, 0x17U);                /*P0.7 : PORT0_IOCR4_PC7_PCR and PORT0_IOCR4_PC7_OE */					   
 					    
                        
   /* Masking P0.8, Since Upon reset, the value of PC8 (P0.8) is 00000b. 
   The startup software (SSW) will change the PC8 value to input pull-up device active, 00010b. */ 
   WR_REG(PORT0->IOCR8, PORT_IOCR_PC0_PCR_Msk, PORT_IOCR_PC0_PCR_Pos, PORT_IOCR_PCR0);            /*    P0.8 : PORT0_IOCR8_PC8_PCR */
                                             
-  WR_REG(PORT0->IOCR8, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P0.8 : PORT0_IOCR8_PC8_OE */					   
+  WR_REG(PORT0->IOCR8, 0xb8U, PORT_IOCR_PC0_PCR_Pos, 0x17U);                /*P0.8 : PORT0_IOCR8_PC8_PCR and PORT0_IOCR8_PC8_OE */					   
+					                         
+  WR_REG(PORT0->IOCR8, 0xb800U, PORT_IOCR_PC1_PCR_Pos, 0x17U);                /*P0.9 : PORT0_IOCR8_PC9_PCR and PORT0_IOCR8_PC9_OE */					   
 					                         
   WR_REG(PORT1->IOCR0, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P1.0 : PORT1_IOCR0_PC0_OE */					   
 					                         
@@ -179,17 +176,22 @@ void DAVE_MUX_Init(void)
   WR_REG(PORT1->IOCR0, PORT_IOCR_PC3_OE_Msk, PORT_IOCR_PC3_OE_Pos, PORT_IOCR_OE1);                /*    P1.3 : PORT1_IOCR0_PC3_OE */					   
 					  
            
+  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS0_Msk, PORT2_PDISC_PDIS0_Pos, PORT_PDISC_PDIS0);            /*    P2.0 : PORT2_PDISC_PDIS0 */                       
+  WR_REG(PORT2->IOCR0, PORT_IOCR_PC0_OE_Msk, PORT_IOCR_PC0_OE_Pos, PORT_IOCR_OE1);                /*    P2.0 : PORT2_IOCR0_PC0_OE */					   
+					  
+           
   WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS1_Msk, PORT2_PDISC_PDIS1_Pos, PORT_PDISC_PDIS0);            /*    P2.1 : PORT2_PDISC_PDIS1 */                       
   WR_REG(PORT2->IOCR0, 0xb800U, PORT_IOCR_PC1_PCR_Pos, 0x16U);                /*P2.1 : PORT2_IOCR0_PC1_PCR and PORT2_IOCR0_PC1_OE */					   
 					  
            
   WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS10_Msk, PORT2_PDISC_PDIS10_Pos, PORT_PDISC_PDIS0);            /*    P2.10 : PORT2_PDISC_PDIS10 */                       
-  WR_REG(PORT2->IOCR8, 0xb80000U, PORT_IOCR_PC2_PCR_Pos, 0x17U);                /*P2.10 : PORT2_IOCR8_PC10_PCR and PORT2_IOCR8_PC10_OE */					   
+  WR_REG(PORT2->IOCR8, PORT_IOCR_PC2_OE_Msk, PORT_IOCR_PC2_OE_Pos, PORT_IOCR_OE1);                /*    P2.10 : PORT2_IOCR8_PC10_OE */					   
 					  
            
   WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS11_Msk, PORT2_PDISC_PDIS11_Pos, PORT_PDISC_PDIS0);            /*    P2.11 : PORT2_PDISC_PDIS11 */                       
-  WR_REG(PORT2->IOCR8, 0xb8000000U, PORT_IOCR_PC3_PCR_Pos, 0x16U);                /*P2.11 : PORT2_IOCR8_PC11_PCR and PORT2_IOCR8_PC11_OE */					   
-					      
+  WR_REG(PORT2->IOCR8, PORT_IOCR_PC3_OE_Msk, PORT_IOCR_PC3_OE_Pos, PORT_IOCR_OE1);                /*    P2.11 : PORT2_IOCR8_PC11_OE */					   
+					                  	         
+                                                     
 }
 
 
@@ -209,7 +211,7 @@ void DAVE_MUX_Init(void)
 *******************************************************************************/
  
 void DAVE_MUX_PreInit(void)
-{                
+{            
 
 /*        PORT Macro definitions for IOCR_OE, IOCR_PCR & HWSEL_HW     */               
            
@@ -217,6 +219,6 @@ void DAVE_MUX_PreInit(void)
            
   WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS6_Msk, PORT2_PDISC_PDIS6_Pos, PORT_PDISC_PDIS0);            /*    P2.6 : PORT2_PDISC_PDIS6 */
            
-  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS9_Msk, PORT2_PDISC_PDIS9_Pos, PORT_PDISC_PDIS0);            /*    P2.9 : PORT2_PDISC_PDIS9 */    
+  WR_REG(PORT2->PDISC, PORT2_PDISC_PDIS9_Msk, PORT2_PDISC_PDIS9_Pos, PORT_PDISC_PDIS0);            /*    P2.9 : PORT2_PDISC_PDIS9 */        
 }
 

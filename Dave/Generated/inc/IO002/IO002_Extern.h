@@ -63,6 +63,9 @@ extern const IO002_HandleType IO002_Handle0;
 /** Handle for IO002 instance 2*/
 extern const IO002_HandleType IO002_Handle2;
 
+/** Handle for IO002 instance 3*/
+extern const IO002_HandleType IO002_Handle3;
+
 /**Pointer to array of IO002_HandleType*/
 extern const IO002_HandleType * IO002_HandleArr[IO002_NUM_INSTANCES];
 /**

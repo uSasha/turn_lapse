@@ -563,13 +563,13 @@ void SPI001_Init(void)
   }
   SCU_GENERAL->PASSWD = 0x000000C3UL;       
   SPI001_lInit(&SPI001_Handle0, SPI001_Baud_Parameter_Values0);    
-  /* Configuration of MTSR Pin 2.10 based on User configuration */    
+  /* Configuration of MTSR Pin 0.7 based on User configuration */    
     /* Configuration of MRST Pin 1.2 based on User configuration */
   PORT1->IOCR0 |= ((uint32_t)0 << 19);
 	     	  
   /* MTSR HW pin not mapped */        
-   /* Configuration of Clock Out Pin 2.11 based on User configuration */         
-  /* Configuration of ChipSelectA Pin 0.0 based on User configuration */                
+   /* Configuration of Clock Out Pin 0.8 based on User configuration */         
+  /* Configuration of ChipSelectA Pin 0.9 based on User configuration */                
 }
 
  /* Function provide to reset the App to default values. */

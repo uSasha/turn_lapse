@@ -112,10 +112,10 @@ SPI001_ConfigType SPI001_Config0 =
 SPI001_PinHandleType SPI001_PinHandle0  =
 {  
      
-   .Port_Num = {(uint8_t) 2, (uint8_t) 1, (uint8_t) 0, (uint8_t) 0},
-   .Pin_Num  = {(uint8_t) 10, (uint8_t) 2,(uint8_t) 0, (uint8_t) 0},
+   .Port_Num = {(uint8_t) 0, (uint8_t) 1, (uint8_t) 0, (uint8_t) 0},
+   .Pin_Num  = {(uint8_t) 7, (uint8_t) 2,(uint8_t) 0, (uint8_t) 0},
     /* Pin Port Base Address */
-   .PinPortRegs = {(SPI001_PORTS_TypeDef*)PORT2_BASE, 
+   .PinPortRegs = {(SPI001_PORTS_TypeDef*)PORT0_BASE, 
                    (SPI001_PORTS_TypeDef*)PORT1_BASE, 
                    (SPI001_PORTS_TypeDef*)PORT0_BASE, 
                    (SPI001_PORTS_TypeDef*)PORT0_BASE

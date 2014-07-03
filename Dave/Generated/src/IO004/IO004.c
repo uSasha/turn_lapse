@@ -131,45 +131,40 @@ void IO004_Init(void)
 
 	   
 
-  /* Configuration of 0 Port 5 based on User configuration */
-  IO004_Handle0.PortRegs->OMR = 0U<< 5;
-  
-  IO004_Handle0.PortRegs->IOCR4 |= (0U << 11);   
-
-  /* Configuration of 0 Port 6 based on User configuration */
-  IO004_Handle1.PortRegs->OMR = 0U<< 6;
-  
-  IO004_Handle1.PortRegs->IOCR4 |= (0U << 19);   
-
   /* Configuration of 1 Port 3 based on User configuration */
-  IO004_Handle2.PortRegs->OMR = 0U<< 3;
+  IO004_Handle0.PortRegs->OMR = 0U<< 3;
   
-  IO004_Handle2.PortRegs->IOCR0 |= (0U << 27);   
+  IO004_Handle0.PortRegs->IOCR0 |= (0U << 27);   
 
-  /* Configuration of 0 Port 8 based on User configuration */
-  IO004_Handle3.PortRegs->OMR = 0U<< 8;
+  /* Configuration of 2 Port 0 based on User configuration */
+  IO004_Handle1.PortRegs->OMR = 0U<< 0;
   
-  IO004_Handle3.PortRegs->IOCR8 |= (0U << 3);   
+  IO004_Handle1.PortRegs->IOCR0 |= (0U << 3);   
 
-  /* Configuration of 0 Port 7 based on User configuration */
-  IO004_Handle4.PortRegs->OMR = 0U<< 7;
+  /* Configuration of 2 Port 11 based on User configuration */
+  IO004_Handle2.PortRegs->OMR = 0U<< 11;
   
-  IO004_Handle4.PortRegs->IOCR4 |= (0U << 27);   
+  IO004_Handle2.PortRegs->IOCR8 |= (0U << 27);   
 
-  /* Configuration of 1 Port 0 based on User configuration */
-  IO004_Handle6.PortRegs->OMR = 0U<< 0;
+  /* Configuration of 0 Port 0 based on User configuration */
+  IO004_Handle3.PortRegs->OMR = 0U<< 0;
   
-  IO004_Handle6.PortRegs->IOCR0 |= (0U << 3);   
+  IO004_Handle3.PortRegs->IOCR0 |= (0U << 3);   
+
+  /* Configuration of 2 Port 10 based on User configuration */
+  IO004_Handle4.PortRegs->OMR = 0U<< 10;
+  
+  IO004_Handle4.PortRegs->IOCR8 |= (0U << 19);   
 
   /* Configuration of 1 Port 1 based on User configuration */
-  IO004_Handle7.PortRegs->OMR = 0U<< 1;
+  IO004_Handle6.PortRegs->OMR = 0U<< 1;
   
-  IO004_Handle7.PortRegs->IOCR0 |= (0U << 11);   
+  IO004_Handle6.PortRegs->IOCR0 |= (0U << 11);   
 
-  /* Configuration of 0 Port 15 based on User configuration */
-  IO004_Handle8.PortRegs->OMR = 0U<< 15;
+  /* Configuration of 1 Port 0 based on User configuration */
+  IO004_Handle7.PortRegs->OMR = 0U<< 0;
   
-  IO004_Handle8.PortRegs->IOCR12 |= (2U << 27);
+  IO004_Handle7.PortRegs->IOCR0 |= (0U << 3);
 }
 
 void IO004_DisableOutputDriver(const IO004_HandleType* Handle,IO004_InputModeType Mode)

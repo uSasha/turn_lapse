@@ -64,7 +64,7 @@ extern "C" {
  * @{
  */
  /**The number of instances of IO002 app created*/
-#define IO002_NUM_INSTANCES (2U)
+#define IO002_NUM_INSTANCES (3U)
 
 /**
   * @}

@@ -116,15 +116,38 @@ const IO002_HandleType IO002_Handle2 = {
   .pdr1_ptr = 0
 	
       
+};   
+
+const IO002_HandleType IO002_Handle3 = {
+  .PortNr   = 2U , /* Mapped Port */
+  .PortPin  = 7U,   /* Mapped Pin */
+  .OMR_PS = 0U,/* omr_ps value*/
+  .PDR_PD = 0U,/* pdr_pd value*/
+  .HW_SEL = 0U,/* IO002_irwHWControl value */
+  .IOCR_PCR = 0U,/* iocr_pcr value*/
+  .IOCR_PCR2 = 2U,/* IO002_inputchardummy value*/
+  .IOCR_PO = 0U,/* iocr_po value*/
+  .IOCR = 0U,/* iocr_po value left shifted by 3*/
+  .IOCR_OE = 0U,/* iocr_oe value*/
+  .PHCR_EN = 1U,/* IO002_erwPadHysteresis value*/      
+  .PHCR0_MSK = PORT2_PHCR0_PH7_Msk,/*Hysteresis control 0 mask*/
+	    
+  .PortRegs = (PORTS_TypeDef*)PORT2_BASE, /* Port Base Address*/ 
+	
+  .pdr0_ptr = 0,
+  .pdr1_ptr = 0
+	
+      
 };
 
 
 
 const IO002_HandleType * IO002_HandleArr[IO002_NUM_INSTANCES] =
-{  
+{   
 
 	&IO002_Handle0, 
-	&IO002_Handle2 
+	&IO002_Handle2, 
+	&IO002_Handle3 
 };
 
   

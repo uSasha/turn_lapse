@@ -14,11 +14,11 @@
 #define LCD_Y     		48
 
 
-void LCDClear(void);
-void LCDString(char *characters);
-void LCDBitmap(char my_array[]);
+void display_clear(void);
+void display_string(char *characters);
+void display_Bitmap(char my_array[]);
 void display_init(void);
 void display_showLogo(void);
-void gotoXY(int x, int y);
+void display_gotoXY(int x, int y);
 
 #endif /* DISPLAY_5110_H_ */

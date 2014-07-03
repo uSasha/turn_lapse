@@ -23,7 +23,7 @@ int main(void)
 	delay_TimerId = SYSTM001_CreateTimer(1,SYSTM001_PERIODIC,timer_tick,NULL);
 
 	display_init();
-	LCDClear();
+	display_clear();
 
 	state_machine_init();
 

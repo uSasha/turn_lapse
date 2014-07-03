@@ -33,7 +33,7 @@ void encoder_ButtonHandler(void)
 
 void encoder_TurnHandler(void)
 {
-	uint32_t enc2 = IO004_ReadPin(IO004_Handle8);
+	uint32_t enc2 = IO002_ReadPin(IO002_Handle3);
 	debounce();
 	uint32_t enc1 = IO002_ReadPin(IO002_Handle0);
 	if(!enc1)

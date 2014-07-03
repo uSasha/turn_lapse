@@ -550,11 +550,11 @@ specific interrupt signal otherwise there
     <requiredResource uriString="app/clk002/*" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="UART Receive" evalFunction="function resourceCondition() {&#xD;&#xA;              var Res = Solver.getResource(&quot;uart001_OprModeTemp&quot;);&#xD;&#xA;              var value = Solver.getIntValue(Res);&#xD;&#xA;              if (value == 0) {&#xD;&#xA;                return true; &#xD;&#xA;              } &#xD;&#xA;              return false;&#xD;&#xA;            }" URI="http://www.infineon.com/1.0.22/app/uart001/0/uart_rxpin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P2/P2_2.dd#//@provided.18"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P2/P2_2.dd#//@provided.41"/>
     <requiredResource uriString="port/p/2/pad/2" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" name="UART Transmit" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;              var Res = Solver.getResource(&quot;uart001_OprModeTemp&quot;);&#xD;&#xA;&#x9;              var value = Solver.getIntValue(Res);&#xD;&#xA;&#x9;              if (value &lt;= 1) {&#xD;&#xA;&#x9;                return true; &#xD;&#xA;&#x9;              } &#xD;&#xA;&#x9;              return false;&#xD;&#xA;&#x9;        }" URI="http://www.infineon.com/1.0.22/app/uart001/0/uart_txpin">
-    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P2/P2_2.dd#//@provided.16"/>
+    <downWardmappedList xsi:type="ResourceModel:ResourceGroup" href="../../P2/P2_2.dd#//@provided.39"/>
     <requiredResource uriString="port/p/2/pad/1" uriType="LOCALTYPE"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" evalFunction="function resourceCondition() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;var value1 = Solver.getSoftwareId().substring(0,1).compareTo(&quot;1&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if(value1  == 0 ) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;  return false;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}" URI="http://www.infineon.com/1.0.22/app/uart001/0/resetapp1">
@@ -619,7 +619,9 @@ specific interrupt signal otherwise there
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.1"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/uart001/0/uart_txpin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.17"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P2/P2_2.dd#//@provided.17"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.27"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.40"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/uart001/0/channel/dout0" isSystemDefined="true">
     <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../USIC0/USIC0_0.dd#//@provided.2"/>
@@ -727,11 +729,11 @@ specific interrupt signal otherwise there
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/uart001/0/uart_rxpin/iocr_pcr" isSystemDefined="true">
     <localValue xsi:type="ResourceModel:IntegerValue" value="0"/>
-    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P2/P2_2.dd#//@provided.19"/>
+    <downWardmappedList xsi:type="ResourceModel:BitField" href="../../P2/P2_2.dd#//@provided.42"/>
     <globalValue xsi:type="ResourceModel:IntegerValue" value="0"/>
   </consumed>
   <consumed xsi:type="ResourceModel:ProxyResource" URI="http://www.infineon.com/1.0.22/app/uart001/0/uart_rxpin/pad" isSystemDefined="true">
-    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.20"/>
+    <downWardmappedList xsi:type="ResourceModel:SignalDeclaration" href="../../P2/P2_2.dd#//@provided.43"/>
   </consumed>
   <alias name="alias_channel" URI="alias_channel" fromURI="peripheral/usic/*/channel/*"/>
   <propertyConstants name="uridevice" value="device/">

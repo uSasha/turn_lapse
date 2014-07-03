@@ -204,22 +204,22 @@ void showMenu(void)
 {
 	uint8_t y = 0;
 	delay_ms(2);
-	LCDClear();
+	display_clear();
 	delay_ms(2);
-	gotoXY(0, 0);
+	display_gotoXY(0, 0);
 	delay_ms(2);
 
 	for(uint8_t i = 0; i < NUMBER_OF_STATES; i++)
 	{
 		if(i == state)			// draw cursor near current state name
 		{
-			LCDString(">");
+			display_string(">");
 		}else
 		{
-			LCDString(" ");
+			display_string(" ");
 		}
 
-		LCDString(FSM[i].str);
+		display_string(FSM[i].str);
 		if(i % 2)		//  TODO redo
 		{
 			char str[4];
@@ -241,10 +241,10 @@ void showMenu(void)
 					sprintf(str, "%d", (int)shots);
 					break;
 			}
-			LCDString(str);
+			display_string(str);
 			y++;					// new line
 			delay_ms(2);
-			gotoXY(0, y);
+			display_gotoXY(0, y);
 			delay_ms(2);
 		}
 		delay_ms(2);
