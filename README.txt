@@ -4,6 +4,14 @@ according to user defined values,such as:
 - whole time of lapse
 - turn angle
 - exposure time
+- communication between box and DSLR is done via IR LED
+
+The main challenge for me was to design robust menu with clear defined transitions between states.
+This was the time I discovered FSMs :)
+
+Everithing is managed in Main.c and sate_machine.c
+Also I implemented simple drivers for camera, encoder and brush motor (/drivers)
+The most fun part was to debug DSLR driver, because communication interface is based on microsecond delays and is not documented properly.
 
 Current hardware is:
 - XMC1100 ARM Cortex M0 MCU,
